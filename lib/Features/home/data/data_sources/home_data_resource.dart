@@ -4,15 +4,15 @@ import 'package:clean_arc_bookly/Features/home/data/models/book_model/book_model
 import 'package:clean_arc_bookly/Features/home/domain/entities/book_entity.dart';
 import 'package:clean_arc_bookly/core/utils/api_service.dart';
 
-abstract class HomeDataResource {
+abstract class HomeRemoteDataResource {
   Future<List<BookEntity>> fetchFeaturedBooks();
   Future<List<BookEntity>> fetchNewestBooks();
 }
 
-class HomeDataResourceImpl implements HomeDataResource {
+class HomeRemoteDataResourceImpl implements HomeRemoteDataResource {
   final ApiService apiService;
 
-  HomeDataResourceImpl({required this.apiService});
+  HomeRemoteDataResourceImpl({required this.apiService});
   @override
   Future<List<BookEntity>> fetchFeaturedBooks() async {
     var data = await apiService.get(
