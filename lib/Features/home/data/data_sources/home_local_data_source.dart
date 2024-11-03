@@ -11,12 +11,11 @@ abstract class HomeLocalDataSource {
 class HomeDatalocalSourceImp implements HomeLocalDataSource {
   @override
   List<BookEntity> fetchFeaturedBooks() {
-    return getCachedBooks(bookName: kFeaturedBox);
+    return getCachedBooks(boxName: kFeaturedBox);
   }
 
   @override
   List<BookEntity> fetchNewestBooks() {
-    // TODO: implement fetchNewestBooks
-    throw UnimplementedError();
+    return getCachedBooks(boxName: kNewestBox);
   }
 }
