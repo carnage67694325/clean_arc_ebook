@@ -25,7 +25,7 @@ class HomeDataResourceImpl implements HomeDataResource {
   Future<List<BookEntity>> fetchNewestBooks() async {
     var data = await apiService.get(
         endPoints:
-            'volumes?Filtering=free-ebooks&sorting=Revelance &q=Subject:comic');
+            'volumes?Filtering=free-ebooks&sorting=Newest&q=Subject:comic');
     return getBookList(data);
   }
 
