@@ -2,23 +2,27 @@ import 'dart:ui';
 
 import 'package:clean_arc_bookly/Features/home/data/models/book_model/book_model.dart';
 import 'package:clean_arc_bookly/Features/home/domain/entities/book_entity.dart';
+import 'package:clean_arc_bookly/constants.dart';
+import 'package:clean_arc_bookly/core/functions/save_books.dart';
 import 'package:clean_arc_bookly/core/utils/api_service.dart';
 
-abstract class HomeRemoteDataResource {
+abstract class HomeRemoteDataSource {
   Future<List<BookEntity>> fetchFeaturedBooks();
   Future<List<BookEntity>> fetchNewestBooks();
 }
 
-class HomeRemoteDataResourceImpl implements HomeRemoteDataResource {
+class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   final ApiService apiService;
 
-  HomeRemoteDataResourceImpl({required this.apiService});
+  HomeRemoteDataSourceImpl({required this.apiService});
   @override
   Future<List<BookEntity>> fetchFeaturedBooks() async {
     var data = await apiService.get(
         endPoints:
             'volumes?Filtering=free-ebooks&sorting=Revelance &q=Subject:comic');
-    return getBookList(data);
+    List<BookEntity> books = getBookList(data);
+    saveBooks(books: books, boxName: kFeaturedBox);
+    return books;
   }
 
   @override
@@ -26,7 +30,9 @@ class HomeRemoteDataResourceImpl implements HomeRemoteDataResource {
     var data = await apiService.get(
         endPoints:
             'volumes?Filtering=free-ebooks&sorting=Newest&q=Subject:comic');
-    return getBookList(data);
+    List<BookEntity> books = getBookList(data);
+    saveBooks(books: books, boxName: kFeaturedBox);
+    return books;
   }
 
   List<BookEntity> getBookList(Map<String, dynamic> data) {
@@ -34,6 +40,7 @@ class HomeRemoteDataResourceImpl implements HomeRemoteDataResource {
     for (var bookMap in data['items']) {
       books.add(BookModel.fromJson(bookMap));
     }
+
     return books;
   }
 }
