@@ -1,19 +1,21 @@
 import 'package:clean_arc_bookly/Features/home/domain/entities/book_entity.dart';
+import 'package:clean_arc_bookly/constants.dart';
+import 'package:clean_arc_bookly/core/functions/get_cached_books.dart';
+import 'package:hive/hive.dart';
 
 abstract class HomeLocalDataSource {
-  Future<List<BookEntity>> fetchFeaturedBooks();
-  Future<List<BookEntity>> fetchNewestBooks();
+  List<BookEntity> fetchFeaturedBooks();
+  List<BookEntity> fetchNewestBooks();
 }
 
 class HomeDatalocalSourceImp implements HomeLocalDataSource {
   @override
-  Future<List<BookEntity>> fetchFeaturedBooks() {
-    // TODO: implement fetchFeaturedBooks
-    throw UnimplementedError();
+  List<BookEntity> fetchFeaturedBooks() {
+    return getCachedBooks(bookName: kFeaturedBox);
   }
 
   @override
-  Future<List<BookEntity>> fetchNewestBooks() {
+  List<BookEntity> fetchNewestBooks() {
     // TODO: implement fetchNewestBooks
     throw UnimplementedError();
   }
