@@ -8,11 +8,11 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'Features/Splash/presentation/views/splash_view.dart';
 
 void main() async {
-  runApp(const Bookly());
   await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
-  await Hive.openBox(kFeaturedBox);
-  await Hive.openBox(kNewestBox);
+  await Hive.openBox<BookEntity>(kFeaturedBox);
+  await Hive.openBox<BookEntity>(kNewestBox);
+  runApp(const Bookly());
 }
 
 class Bookly extends StatelessWidget {
