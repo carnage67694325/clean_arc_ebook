@@ -8,9 +8,9 @@ part 'featured_books_state.dart';
 class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
   FeaturedBooksCubit(this.fetchBooksUseCase) : super(FeaturedBooksInitial());
   final FetchBooksUseCase fetchBooksUseCase;
-  Future<void> fetchFeaturedBooks() async {
+  Future<void> fetchFeaturedBooks({int pageNUmber = 0}) async {
     emit(FeaturedBooksLoading());
-    var result = await fetchBooksUseCase.call();
+    var result = await fetchBooksUseCase.call(pageNUmber);
     result.fold(
       (failure) {
         emit(FeaturedBooksFailure(errMessage: failure.errMessage));
