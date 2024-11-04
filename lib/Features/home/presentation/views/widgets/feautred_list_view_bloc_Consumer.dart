@@ -1,5 +1,6 @@
 import 'package:clean_arc_bookly/Features/home/domain/entities/book_entity.dart';
 import 'package:clean_arc_bookly/Features/home/presentation/manager/featured_books_cubit/featured_books_cubit.dart';
+import 'package:clean_arc_bookly/Features/home/presentation/views/widgets/featured_list_fading_antimation.dart';
 import 'package:clean_arc_bookly/Features/home/presentation/views/widgets/featured_list_view.dart';
 import 'package:clean_arc_bookly/core/functions/show_snack_bar.dart';
 import 'package:flutter/material.dart';
