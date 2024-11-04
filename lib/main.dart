@@ -6,6 +6,7 @@ import 'package:clean_arc_bookly/Features/home/domain/repos/home_repo.dart';
 import 'package:clean_arc_bookly/Features/home/domain/use_cases/fetch_books_use_case.dart';
 import 'package:clean_arc_bookly/Features/home/presentation/manager/featured_books_cubit/featured_books_cubit.dart';
 import 'package:clean_arc_bookly/constants.dart';
+import 'package:clean_arc_bookly/core/functions/service_locator.dart';
 import 'package:clean_arc_bookly/core/utils/api_service.dart';
 import 'package:clean_arc_bookly/core/utils/app_router.dart';
 import 'package:dio/dio.dart';
@@ -21,6 +22,7 @@ void main() async {
   Hive.registerAdapter(BookEntityAdapter());
   await Hive.openBox<BookEntity>(kFeaturedBox);
   await Hive.openBox<BookEntity>(kNewestBox);
+  setupServiceLoactor()
   runApp(const Bookly());
 }
 
@@ -34,14 +36,7 @@ class Bookly extends StatelessWidget {
         BlocProvider(
           create: (context) => FeaturedBooksCubit(
             FetchBooksUseCase(
-              homeRepo: HomeRepoImpl(
-                  homeRemoteDataSource: HomeRemoteDataSourceImpl(
-                    apiService: ApiService(
-                      Dio(),
-                    ),
-                  ),
-                  homeLocalDataSource: HomeDatalocalSourceImp()),
-            ),
+              homeRepo: getIt.get<HomeRepoImpl>()            ),
           ),
         )
       ],
