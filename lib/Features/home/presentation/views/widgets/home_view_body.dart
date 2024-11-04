@@ -1,3 +1,5 @@
+import 'package:clean_arc_bookly/Features/home/presentation/manager/featured_books_cubit/featured_books_cubit.dart';
+import 'package:clean_arc_bookly/Features/home/presentation/views/widgets/feautred_list_view_bloc_builder.dart';
 import 'package:clean_arc_bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,18 +13,18 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
+    return const CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 30,
                   ),
                   child: CustomAppBar()),
-              FeaturedBooksListView(),
+              FeaturedBooksListViewBlocBuilder(),
               SizedBox(
                 height: 50,
               ),
@@ -39,7 +41,7 @@ class HomeViewBody extends StatelessWidget {
             ],
           ),
         ),
-        const SliverFillRemaining(
+        SliverFillRemaining(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 30),
             child: BestSellerListView(),
