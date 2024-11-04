@@ -11,6 +11,7 @@ import 'package:clean_arc_bookly/constants.dart';
 import 'package:clean_arc_bookly/core/functions/service_locator.dart';
 import 'package:clean_arc_bookly/core/utils/api_service.dart';
 import 'package:clean_arc_bookly/core/utils/app_router.dart';
+import 'package:clean_arc_bookly/simple_bloc_observer.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +21,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'Features/Splash/presentation/views/splash_view.dart';
 
 void main() async {
+  Bloc.observer = SimpleBlocObserver();
   await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
   await Hive.openBox<BookEntity>(kFeaturedBox);
