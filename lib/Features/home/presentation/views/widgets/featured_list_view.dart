@@ -1,12 +1,12 @@
 import 'package:clean_arc_bookly/Features/home/domain/entities/book_entity.dart';
 import 'package:clean_arc_bookly/Features/home/presentation/manager/featured_books_cubit/featured_books_cubit.dart';
 import 'package:clean_arc_bookly/Features/home/presentation/views/widgets/custom_book_item.dart';
+import 'package:clean_arc_bookly/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FeaturedBooksListView extends StatefulWidget {
-  const FeaturedBooksListView({Key? key, required this.books})
-      : super(key: key);
+  const FeaturedBooksListView({super.key, required this.books});
 
   final List<BookEntity> books;
 
@@ -33,7 +33,7 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
       if (!isLoading) {
         isLoading = true;
         await BlocProvider.of<FeaturedBooksCubit>(context)
-            .fetchFeaturedBooks(pageNUmber: nextPage++);
+            .fetchFeaturedBooks(pageNumber: nextPage++);
         isLoading = false;
       }
     }
@@ -57,7 +57,7 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: CustomBookImage(
-              image: widget.books[index].image ?? '',
+              image: widget.books[index].image ?? AssetsData.testImage,
             ),
           );
         },

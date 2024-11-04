@@ -1,5 +1,5 @@
 import 'package:clean_arc_bookly/Features/home/presentation/manager/featured_books_cubit/featured_books_cubit.dart';
-import 'package:clean_arc_bookly/Features/home/presentation/views/widgets/feautred_list_view_bloc_builder.dart';
+import 'package:clean_arc_bookly/Features/home/presentation/views/widgets/feautred_list_view_bloc_Consumer.dart';
 import 'package:clean_arc_bookly/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
